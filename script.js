@@ -1,3 +1,18 @@
+window.onload = function() {
+  var loader = document.querySelector('.loader');
+  var content = document.querySelector('.content');
+  var percent = document.querySelector('.loader-percent');
+  var progress = 0;
+  var interval = setInterval(function() {
+    progress += Math.random() * 5;
+    percent.textContent = Math.min(progress.toFixed(0), 100) + '%';
+    if (progress >= 100) {
+      clearInterval(interval);
+      document.body.classList.add('loaded');
+      content.style.display = 'flex';
+    }
+  }, 100);
+  
 const track = document.getElementById("image-track");
 
 const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
@@ -43,3 +58,4 @@ window.ontouchend = e => handleOnUp(e.touches[0]);
 window.onmousemove = e => handleOnMove(e);
 
 window.ontouchmove = e => handleOnMove(e.touches[0]);
+}
